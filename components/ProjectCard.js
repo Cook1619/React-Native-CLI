@@ -8,7 +8,9 @@ class ProjectCard extends Component {
             <Card featuredTitle={this.props.project.name}
                 image={require('../images/deathstar.jpg')}
             >
-                <Button backgroundColor="blue" title="View Project"/>
+                <Button backgroundColor="blue" 
+                title="View Project" 
+                onPress={ this.props.Navigate}/>
             </Card>
         );
     }

@@ -4,16 +4,20 @@ import ProjectCard from '../components/ProjectCard';
 
 class HomeScreen extends Component {
 
-    constructor(props){
+    static navigationOptions = {
+        title: 'Covalence Projects'
+    }
+
+    constructor(props) {
         super(props);
         this.state = {
             projects: []
         };
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.setState({
-            projects:[
+            projects: [
                 { name: 'Test 1', description: 'Angular' },
                 { name: 'Test 2', description: 'React' },
                 { name: 'Test 3', description: 'Vue' },
@@ -21,21 +25,26 @@ class HomeScreen extends Component {
             ]
         });
     }
-    render(){
+
+    navigate(project) {
+        this.props.navigate.navigate('ProjectDetails', { project });
+    }
+    render() {
         return (
             <ScrollView style={styles.container}>
                 {this.state.projects.map((project, index) => {
-                    return <ProjectCard key={index} project={project} />
+                    return (<ProjectCard key={index} project={project}
+                        Navigate={() => { this.navigate(project) }}
+                    />)
                 })}
             </ScrollView>
-        )
+        );
     }
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 30,
         paddingLeft: 10,
         paddingRight: 10
     }
